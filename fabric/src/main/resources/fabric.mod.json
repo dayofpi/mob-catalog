@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "mobcatalog",
+  "version": "${version}",
+  "name": "Mob Catalog",
+  "description": "Adds new mobs!",
+  "authors": [
+    "dayofpi"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/mob-catalog",
+    "sources": "https://github.com/dayofpi/mob-catalog"
+  },
+  "license": "MIT",
+  "icon": "assets/mobcatalog/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.dayofpi.fabric.MobCatalogFabric"
+    ],
+    "client": [
+      "com.dayofpi.fabric.MobCatalogFabricClient"
+    ],
+    "fabric-datagen": [
+      "com.dayofpi.fabric.datagen.ModDataGenerator"
+    ]
+  },
+  "mixins": [
+    "mobcatalog.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.20.1",
+    "architectury": ">=9.1.12"
+  }
+}

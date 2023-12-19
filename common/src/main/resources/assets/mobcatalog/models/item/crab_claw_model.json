@@ -1,0 +1,48 @@
+{
+	"gui_light": "front",
+	"textures": {
+		"0": "mobcatalog:item/crab_claw_model",
+		"particle": "mobcatalog:item/crab_claw_model"
+	},
+	"elements": [
+		{
+			"from": [6, 4, 5],
+			"to": [10, 8, 12],
+			"faces": {
+				"north": {"uv": [7, 7, 11, 11], "texture": "#0"},
+				"east": {"uv": [0, 7, 7, 11], "texture": "#0"},
+				"south": {"uv": [7, 7, 11, 11], "texture": "#0"},
+				"west": {"uv": [7, 7, 0, 11], "texture": "#0"},
+				"up": {"uv": [7, 0, 11, 7], "texture": "#0"},
+				"down": {"uv": [7, 0, 11, 7], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 0.35, 0],
+			"scale": [1.2, 1.2, 1.2]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 0.35, 0],
+			"scale": [1.2, 1.2, 1.2]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 3.5, 0]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, 3.5, 0]
+		},
+		"head": {
+			"translation": [0, 0, -10.25]
+		}
+	},
+	"groups": [
+		{
+			"name": "group",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [0]
+		}
+	]
+}

@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.dayofpi.fabric.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BoatMixin",
+    "LivingEntityMixin"
+  ],
+  "client": [
+    "ItemRendererMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

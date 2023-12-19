@@ -1,0 +1,17 @@
+{
+  "itemGroup.mobcatalog": "Mob Catalog",
+  "item.mobcatalog.crab_claw": "Crab Claw",
+  "item.mobcatalog.crab_spawn_egg": "Crab Spawn Egg",
+  "item.mobcatalog.penguin_spawn_egg": "Penguin Spawn Egg",
+  "entity.mobcatalog.crab": "Crab",
+  "entity.mobcatalog.penguin": "Penguin",
+  "subtitles.mobcatalog.entity.crab.death": "Crab dies",
+  "subtitles.mobcatalog.entity.crab.eat": "Crab eats",
+  "subtitles.mobcatalog.entity.crab.hurt": "Crab hurts",
+  "subtitles.mobcatalog.entity.crab.step": "Crab steps",
+  "subtitles.mobcatalog.entity.penguin.ambient": "Penguin honks",
+  "subtitles.mobcatalog.entity.penguin.death": "Penguin dies",
+  "subtitles.mobcatalog.entity.penguin.eat": "Penguin eats",
+  "subtitles.mobcatalog.entity.penguin.hurt": "Penguin hurts",
+  "subtitles.mobcatalog.entity.penguin.step": "Penguin steps"
+}

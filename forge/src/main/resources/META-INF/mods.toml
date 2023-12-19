@@ -1,0 +1,47 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "mobcatalog"
+version = "${version}"
+displayName = "Mob Catalog"
+authors = "dayofpi"
+description = '''
+Adds new mobs!
+'''
+logoFile = "icon.png"
+
+[[dependencies.mobcatalog]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.mobcatalog]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.mobcatalog]]
+modId = "architectury"
+mandatory = true
+versionRange = "[9.1.12,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.mobcatalog]]
+modId = "azurelib"
+mandatory = true
+versionRange = "[2.0.16,)"
+side = "BOTH"
+
+[[dependencies.mobcatalog]]
+modId = "pehkui"
+mandatory = true
+versionRange = "[3.7.11,)"
+side = "BOTH"

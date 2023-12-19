@@ -1,0 +1,67 @@
+{
+  "entity.crab.death": {
+    "sounds": [
+      "mobcatalog:entity/crab/death"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.crab.death"
+  },
+  "entity.crab.eat": {
+    "sounds": [
+      "mobcatalog:entity/crab/eat1",
+      "mobcatalog:entity/crab/eat2"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.crab.eat"
+  },
+  "entity.crab.hurt": {
+    "sounds": [
+      "mobcatalog:entity/crab/hurt1",
+      "mobcatalog:entity/crab/hurt2"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.crab.hurt"
+  },
+  "entity.crab.step": {
+    "sounds": [
+      "mobcatalog:entity/crab/step1",
+      "mobcatalog:entity/crab/step2"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.crab.step"
+  },
+  "entity.penguin.ambient": {
+    "sounds": [
+      "mobcatalog:entity/penguin/ambient1",
+      "mobcatalog:entity/penguin/ambient2",
+      "mobcatalog:entity/penguin/ambient3",
+      "mobcatalog:entity/penguin/ambient4"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.penguin.ambient"
+  },
+  "entity.penguin.death": {
+    "sounds": [
+      "mobcatalog:entity/penguin/death"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.penguin.death"
+  },
+  "entity.penguin.eat": {
+    "sounds": [
+      "mob/parrot/eat1",
+      "mob/parrot/eat2",
+      "mob/parrot/eat3"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.penguin.eat"
+  },
+  "entity.penguin.hurt": {
+    "sounds": [
+      "mobcatalog:entity/penguin/ambient1",
+      "mobcatalog:entity/penguin/ambient2",
+      "mobcatalog:entity/penguin/ambient3",
+      "mobcatalog:entity/penguin/ambient4"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.penguin.hurt"
+  },
+  "entity.penguin.step": {
+    "sounds": [
+      "mobcatalog:entity/penguin/step"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.penguin.step"
+  }
+}
