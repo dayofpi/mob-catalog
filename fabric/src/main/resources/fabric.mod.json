@@ -16,13 +16,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.dayofpi.fabric.MobCatalogFabric"
+      "com.dayofpi.mobcatalog.fabric.MobCatalogFabric"
     ],
     "client": [
-      "com.dayofpi.fabric.MobCatalogFabricClient"
+      "com.dayofpi.mobcatalog.fabric.MobCatalogFabricClient"
     ],
     "fabric-datagen": [
-      "com.dayofpi.fabric.datagen.ModDataGenerator"
+      "com.dayofpi.mobcatalog.fabric.datagen.ModDataGenerator"
     ]
   },
   "mixins": [

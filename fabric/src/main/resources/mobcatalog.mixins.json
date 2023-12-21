@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.dayofpi.fabric.mixin",
+  "package": "com.dayofpi.mobcatalog.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BoatMixin",

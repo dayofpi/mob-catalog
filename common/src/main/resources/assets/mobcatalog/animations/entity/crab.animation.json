@@ -75,6 +75,24 @@
 					}
 				}
 			}
+		},
+		"attack": {
+			"animation_length": 0.375,
+			"bones": {
+				"left_claw": {
+					"rotation": {
+						"0.0": {
+							"vector": [-43.3581, -41.57855, 23.8515]
+						},
+						"0.25": {
+							"vector": [7.5, 35, 0]
+						},
+						"0.375": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
 		}
 	},
 	"azurelib_format_version": 2
