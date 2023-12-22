@@ -13,6 +13,7 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
     modImplementation "mod.azure.azurelib:azurelib-neo-${rootProject.minecraft_version}:${rootProject.azurelib_version}"
+    api "fuzs.forgeconfigapiport:forgeconfigapiport-common:${rootProject.config_version}"
 }
 
 sourceSets {

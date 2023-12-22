@@ -2,6 +2,7 @@ package com.dayofpi.mobcatalog.entity.custom;
 
 import com.dayofpi.mobcatalog.entity.ModEntityTypes;
 import com.dayofpi.mobcatalog.sound.ModSoundEvents;
+import com.dayofpi.mobcatalog.util.ModTags;
 import com.dayofpi.mobcatalog.util.ModUtil;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -30,7 +31,6 @@ import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -80,7 +80,7 @@ public class PenguinEntity extends Animal implements GeoEntity {
         this.goalSelector.addGoal(1, new BreathAirGoal(this));
         this.goalSelector.addGoal(2, new PanicGoal(this, 1.4));
         this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new TemptGoal(this, 1.0, Ingredient.of(Items.COD), false));
+        this.goalSelector.addGoal(4, new TemptGoal(this, 1.0, Ingredient.of(ModTags.Items.PENGUIN_FOOD), false));
         this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1));
         this.goalSelector.addGoal(6, new RandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(6, new MoveInWaterGoal(this, 2.0, 10));
@@ -101,7 +101,7 @@ public class PenguinEntity extends Animal implements GeoEntity {
 
     @Override
     public boolean isFood(ItemStack itemStack) {
-        return itemStack.is(Items.COD);
+        return itemStack.is(ModTags.Items.PENGUIN_FOOD);
     }
 
     @Override

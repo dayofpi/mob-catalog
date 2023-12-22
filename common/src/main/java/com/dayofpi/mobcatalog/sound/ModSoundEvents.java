@@ -10,6 +10,11 @@ import net.minecraft.sounds.SoundEvent;
 public class ModSoundEvents {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(MobCatalog.MOD_ID, Registries.SOUND_EVENT);
 
+    public static final RegistrySupplier<SoundEvent> CAPYBARA_AMBIENT = registerSoundEvent("entity.capybara.ambient");
+    public static final RegistrySupplier<SoundEvent> CAPYBARA_DEATH = registerSoundEvent("entity.capybara.death");
+    public static final RegistrySupplier<SoundEvent> CAPYBARA_EAT = registerSoundEvent("entity.capybara.eat");
+    public static final RegistrySupplier<SoundEvent> CAPYBARA_HURT = registerSoundEvent("entity.capybara.hurt");
+    public static final RegistrySupplier<SoundEvent> CAPYBARA_STEP = registerSoundEvent("entity.capybara.step");
     public static final RegistrySupplier<SoundEvent> CRAB_DEATH = registerSoundEvent("entity.crab.death");
     public static final RegistrySupplier<SoundEvent> CRAB_EAT = registerSoundEvent("entity.crab.eat");
     public static final RegistrySupplier<SoundEvent> CRAB_HURT = registerSoundEvent("entity.crab.hurt");

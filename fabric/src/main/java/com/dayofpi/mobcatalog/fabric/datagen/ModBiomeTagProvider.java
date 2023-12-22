@@ -17,6 +17,7 @@ public class ModBiomeTagProvider extends FabricTagProvider<Biome> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        getOrCreateTagBuilder(ModTags.Biomes.SPAWNS_CAPYBARAS).addOptional(Biomes.SWAMP).addOptional(Biomes.JUNGLE).addOptional(Biomes.SPARSE_JUNGLE);
         getOrCreateTagBuilder(ModTags.Biomes.SPAWNS_CRABS).addOptional(Biomes.BEACH).addOptional(Biomes.MANGROVE_SWAMP);
         getOrCreateTagBuilder(ModTags.Biomes.SPAWNS_PENGUINS).addOptional(Biomes.STONY_SHORE);
     }

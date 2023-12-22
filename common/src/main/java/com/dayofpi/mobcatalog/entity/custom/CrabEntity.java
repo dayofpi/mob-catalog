@@ -32,7 +32,6 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -54,7 +53,7 @@ public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabE
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, false));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, Ingredient.of(Items.KELP), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, Ingredient.of(ModTags.Items.CRAB_FOOD), false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -78,7 +77,7 @@ public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabE
 
     @Override
     public boolean isFood(ItemStack itemStack) {
-        return itemStack.is(Items.KELP);
+        return itemStack.is(ModTags.Items.CRAB_FOOD);
     }
 
     @Override

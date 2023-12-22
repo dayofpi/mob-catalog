@@ -1,4 +1,44 @@
 {
+  "entity.capybara.ambient": {
+    "sounds": [
+      "mobcatalog:entity/capybara/ambient1",
+      "mobcatalog:entity/capybara/ambient2",
+      "mobcatalog:entity/capybara/ambient3",
+      "mobcatalog:entity/capybara/ambient4"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.capybara.ambient"
+  },
+  "entity.capybara.death": {
+    "sounds": [
+      "mobcatalog:entity/capybara/death"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.capybara.death"
+  },
+  "entity.capybara.eat": {
+    "sounds": [
+      "entity/horse/eat1",
+      "entity/horse/eat2",
+      "entity/horse/eat3",
+      "entity/horse/eat4",
+      "entity/horse/eat5"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.capybara.eat"
+  },
+  "entity.capybara.hurt": {
+    "sounds": [
+      "mobcatalog:entity/capybara/ambient1",
+      "mobcatalog:entity/capybara/ambient2",
+      "mobcatalog:entity/capybara/ambient3",
+      "mobcatalog:entity/capybara/ambient4"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.capybara.hurt"
+  },
+  "entity.capybara.step": {
+    "sounds": [
+      "mobcatalog:entity/capybara/step"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.capybara.step"
+  },
   "entity.crab.death": {
     "sounds": [
       "mobcatalog:entity/crab/death"

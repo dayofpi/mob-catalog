@@ -30,7 +30,6 @@ configurations {
 
 repositories {
     maven { url "https://maven.terraformersmc.com/releases" }
-    maven { url 'https://maven.wispforest.io' }
 }
 
 dependencies {
@@ -43,11 +42,10 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 
     modImplementation "mod.azure.azurelib:azurelib-fabric-${rootProject.minecraft_version}:${rootProject.azurelib_version}"
-    annotationProcessor modImplementation("io.wispforest:owo-lib:${rootProject.owo_version}")
-    include "io.wispforest:owo-sentinel:${rootProject.owo_version}"
     modApi("com.github.Virtuoel:Pehkui:${rootProject.pehkui_version}", {
         exclude group: "net.fabricmc.fabric-api"
     })
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${rootProject.config_version}"
 }
 
 processResources {
