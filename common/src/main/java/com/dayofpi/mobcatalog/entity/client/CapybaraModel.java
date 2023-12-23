@@ -22,7 +22,7 @@ public class CapybaraModel extends DefaultedEntityGeoModel<CapybaraEntity> {
         if (head != null) {
             EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
 
-            head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);
+            head.setRotX(-0.4799655F + entityData.headPitch() * Mth.DEG_TO_RAD);
             head.setRotY(entityData.netHeadYaw() * Mth.DEG_TO_RAD);
 
             if (entityData.isChild()) {

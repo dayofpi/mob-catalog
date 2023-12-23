@@ -1,6 +1,6 @@
 package com.dayofpi.mobcatalog.entity.custom;
 
-import com.dayofpi.mobcatalog.entity.CapybaraGrinding;
+import com.dayofpi.mobcatalog.entity.CapybaraCutting;
 import com.dayofpi.mobcatalog.entity.ModEntityTypes;
 import com.dayofpi.mobcatalog.sound.ModSoundEvents;
 import com.dayofpi.mobcatalog.util.ModTags;
@@ -37,36 +37,36 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import org.jetbrains.annotations.Nullable;
 
 public class CapybaraEntity extends Animal implements GeoEntity {
-    private static final ImmutableList<CapybaraGrinding> GRINDING_LIST = ImmutableList.of(
-            new CapybaraGrinding(Items.OAK_LOG, Items.STRIPPED_OAK_LOG, 1),
-            new CapybaraGrinding(Items.OAK_WOOD, Items.STRIPPED_OAK_WOOD, 1),
-            new CapybaraGrinding(Items.SPRUCE_LOG, Items.STRIPPED_SPRUCE_LOG, 1),
-            new CapybaraGrinding(Items.SPRUCE_WOOD, Items.STRIPPED_SPRUCE_WOOD, 1),
-            new CapybaraGrinding(Items.BIRCH_LOG, Items.STRIPPED_BIRCH_LOG, 1),
-            new CapybaraGrinding(Items.BIRCH_WOOD, Items.STRIPPED_BIRCH_WOOD, 1),
-            new CapybaraGrinding(Items.JUNGLE_LOG, Items.STRIPPED_JUNGLE_LOG, 1),
-            new CapybaraGrinding(Items.JUNGLE_WOOD, Items.STRIPPED_JUNGLE_WOOD, 1),
-            new CapybaraGrinding(Items.ACACIA_LOG, Items.STRIPPED_ACACIA_LOG, 1),
-            new CapybaraGrinding(Items.ACACIA_WOOD, Items.STRIPPED_ACACIA_WOOD, 1),
-            new CapybaraGrinding(Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG, 1),
-            new CapybaraGrinding(Items.DARK_OAK_WOOD, Items.STRIPPED_DARK_OAK_WOOD, 1),
-            new CapybaraGrinding(Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG, 1),
-            new CapybaraGrinding(Items.MANGROVE_WOOD, Items.STRIPPED_MANGROVE_WOOD, 1),
-            new CapybaraGrinding(Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG, 1),
-            new CapybaraGrinding(Items.CHERRY_WOOD, Items.STRIPPED_CHERRY_WOOD, 1),
-            new CapybaraGrinding(Items.CRIMSON_STEM, Items.STRIPPED_CRIMSON_STEM, 1),
-            new CapybaraGrinding(Items.CRIMSON_HYPHAE, Items.STRIPPED_CRIMSON_HYPHAE, 1),
-            new CapybaraGrinding(Items.WARPED_STEM, Items.STRIPPED_WARPED_STEM, 1),
-            new CapybaraGrinding(Items.WARPED_HYPHAE, Items.STRIPPED_WARPED_HYPHAE, 1),
-            new CapybaraGrinding(Items.BAMBOO_BLOCK, Items.STRIPPED_BAMBOO_BLOCK, 1),
-            new CapybaraGrinding(Items.DRIED_KELP_BLOCK, Items.DRIED_KELP, 9),
-            new CapybaraGrinding(Items.HAY_BLOCK, Items.WHEAT, 9),
-            new CapybaraGrinding(Items.MELON, Items.MELON_SLICE, 9),
-            new CapybaraGrinding(Items.MELON_SLICE, Items.MELON_SEEDS, 1),
-            new CapybaraGrinding(Items.MANGROVE_ROOTS, Items.STICK, 4),
-            new CapybaraGrinding(ItemTags.PLANKS, Items.STICK, 2),
-            new CapybaraGrinding(Items.PUMPKIN, Items.PUMPKIN_SEEDS, 4),
-            new CapybaraGrinding(Items.SUGAR_CANE, Items.SUGAR, 1)
+    private static final ImmutableList<CapybaraCutting> CUTTING_LIST = ImmutableList.of(
+            new CapybaraCutting(Items.OAK_LOG, Items.STRIPPED_OAK_LOG, 1),
+            new CapybaraCutting(Items.OAK_WOOD, Items.STRIPPED_OAK_WOOD, 1),
+            new CapybaraCutting(Items.SPRUCE_LOG, Items.STRIPPED_SPRUCE_LOG, 1),
+            new CapybaraCutting(Items.SPRUCE_WOOD, Items.STRIPPED_SPRUCE_WOOD, 1),
+            new CapybaraCutting(Items.BIRCH_LOG, Items.STRIPPED_BIRCH_LOG, 1),
+            new CapybaraCutting(Items.BIRCH_WOOD, Items.STRIPPED_BIRCH_WOOD, 1),
+            new CapybaraCutting(Items.JUNGLE_LOG, Items.STRIPPED_JUNGLE_LOG, 1),
+            new CapybaraCutting(Items.JUNGLE_WOOD, Items.STRIPPED_JUNGLE_WOOD, 1),
+            new CapybaraCutting(Items.ACACIA_LOG, Items.STRIPPED_ACACIA_LOG, 1),
+            new CapybaraCutting(Items.ACACIA_WOOD, Items.STRIPPED_ACACIA_WOOD, 1),
+            new CapybaraCutting(Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG, 1),
+            new CapybaraCutting(Items.DARK_OAK_WOOD, Items.STRIPPED_DARK_OAK_WOOD, 1),
+            new CapybaraCutting(Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG, 1),
+            new CapybaraCutting(Items.MANGROVE_WOOD, Items.STRIPPED_MANGROVE_WOOD, 1),
+            new CapybaraCutting(Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG, 1),
+            new CapybaraCutting(Items.CHERRY_WOOD, Items.STRIPPED_CHERRY_WOOD, 1),
+            new CapybaraCutting(Items.CRIMSON_STEM, Items.STRIPPED_CRIMSON_STEM, 1),
+            new CapybaraCutting(Items.CRIMSON_HYPHAE, Items.STRIPPED_CRIMSON_HYPHAE, 1),
+            new CapybaraCutting(Items.WARPED_STEM, Items.STRIPPED_WARPED_STEM, 1),
+            new CapybaraCutting(Items.WARPED_HYPHAE, Items.STRIPPED_WARPED_HYPHAE, 1),
+            new CapybaraCutting(Items.BAMBOO_BLOCK, Items.STRIPPED_BAMBOO_BLOCK, 1),
+            new CapybaraCutting(Items.DRIED_KELP_BLOCK, Items.DRIED_KELP, 9),
+            new CapybaraCutting(Items.HAY_BLOCK, Items.WHEAT, 9),
+            new CapybaraCutting(Items.MELON, Items.MELON_SLICE, 9),
+            new CapybaraCutting(Items.MELON_SLICE, Items.MELON_SEEDS, 1),
+            new CapybaraCutting(Items.MANGROVE_ROOTS, Items.STICK, 4),
+            new CapybaraCutting(ItemTags.PLANKS, Items.STICK, 2),
+            new CapybaraCutting(Items.PUMPKIN, Items.PUMPKIN_SEEDS, 4),
+            new CapybaraCutting(Items.SUGAR_CANE, Items.SUGAR, 1)
     );
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
@@ -132,7 +132,7 @@ public class CapybaraEntity extends Animal implements GeoEntity {
 
     @Override
     protected void playStepSound(BlockPos pPos, BlockState pBlock) {
-        this.playSound(ModSoundEvents.CAPYBARA_STEP.get(), 0.15F, this.getVoicePitch());
+        this.playSound(ModSoundEvents.CAPYBARA_STEP.get(), 0.15F, 1.0F);
     }
 
     @Override
@@ -141,10 +141,10 @@ public class CapybaraEntity extends Animal implements GeoEntity {
             ItemStack itemStack = pPlayer.getItemInHand(pHand);
             boolean canEat = this.isFood(itemStack) && this.getAge() == 0 && this.canFallInLove();
             if (!canEat && !this.isBaby()) {
-                for (CapybaraGrinding capybaraGrinding : GRINDING_LIST) {
-                    if (capybaraGrinding.ingredient.test(itemStack)) {
+                for (CapybaraCutting capybaraCutting : CUTTING_LIST) {
+                    if (capybaraCutting.ingredient.test(itemStack)) {
                         this.usePlayerItem(pPlayer, pHand, itemStack);
-                        this.spawnAtLocation(new ItemStack(capybaraGrinding.result, capybaraGrinding.amount), 0.5F);
+                        this.spawnAtLocation(new ItemStack(capybaraCutting.result, capybaraCutting.amount), 0.5F);
                         return InteractionResult.SUCCESS;
                     }
                 }

@@ -21,6 +21,6 @@ public class ModEntityLootTableProvider extends SimpleFabricLootTableProvider {
 
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> biConsumer) {
-        biConsumer.accept(ModEntityTypes.CRAB.get().getDefaultLootTable(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(ModItems.CRAB_CLAW.get())).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.5F, 0.0625F))));
+        biConsumer.accept(ModEntityTypes.CRAB.get().getDefaultLootTable(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(ModItems.CRAB_CLAW.get())).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.2F, 0.02F))));
     }
 }

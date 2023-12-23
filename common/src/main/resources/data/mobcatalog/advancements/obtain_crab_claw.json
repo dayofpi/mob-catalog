@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "mobcatalog:crab_claw"
+    },
+    "title": {
+      "translate": "advancements.mobcatalog.obtain_crab_claw.title"
+    },
+    "description": {
+      "translate": "advancements.mobcatalog.obtain_crab_claw.description"
+    }
+  },
+  "frame": "task",
+  "show_toast": true,
+  "announce_to_chat": true,
+  "hidden": false,
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "got_crab_claw": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobcatalog:crab_claw"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "got_crab_claw"
+    ]
+  ]
+}

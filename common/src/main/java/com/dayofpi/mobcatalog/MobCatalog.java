@@ -41,7 +41,7 @@ public class MobCatalog {
                 mutable.getSpawnProperties().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntityTypes.CAPYBARA.get(), 10, 4, 4));
             }
             if (ModConfigs.SPAWN_CRABS.get() && biomeContext.hasTag(ModTags.Biomes.SPAWNS_CRABS)) {
-                mutable.getSpawnProperties().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntityTypes.CRAB.get(), 5, 2, 5));
+                mutable.getSpawnProperties().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntityTypes.CRAB.get(), 8, 2, 5));
             }
             if (ModConfigs.SPAWN_PENGUINS.get() && biomeContext.hasTag(ModTags.Biomes.SPAWNS_PENGUINS)) {
                 mutable.getSpawnProperties().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntityTypes.PENGUIN.get(), 5, 2, 5));
