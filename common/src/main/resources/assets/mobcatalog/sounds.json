@@ -103,5 +103,48 @@
       "mobcatalog:entity/penguin/step"
     ],
     "subtitle": "subtitles.mobcatalog.entity.penguin.step"
+  },
+  "entity.stonemaw.ambient": {
+    "sounds": [
+      "mobcatalog:entity/stonemaw/ambient1",
+      "mobcatalog:entity/stonemaw/ambient2"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.stonemaw.ambient"
+  },
+  "entity.stonemaw.close": {
+    "sounds": [
+      "mobcatalog:entity/stonemaw/close"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.stonemaw.close"
+  },
+  "entity.stonemaw.death": {
+    "sounds": [
+      "mobcatalog:entity/stonemaw/death"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.stonemaw.death"
+  },
+  "entity.stonemaw.eat": {
+    "sounds": [
+      "mobcatalog:entity/stonemaw/eat"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.stonemaw.eat"
+  },
+  "entity.stonemaw.hurt": {
+    "sounds": [
+      "mobcatalog:entity/stonemaw/hurt"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.stonemaw.hurt"
+  },
+  "entity.stonemaw.open": {
+    "sounds": [
+      "mobcatalog:entity/stonemaw/open"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.stonemaw.open"
+  },
+  "entity.stonemaw.step": {
+    "sounds": [
+      "mobcatalog:entity/stonemaw/step"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.stonemaw.step"
   }
 }

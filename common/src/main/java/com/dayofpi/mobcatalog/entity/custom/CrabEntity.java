@@ -1,6 +1,7 @@
 package com.dayofpi.mobcatalog.entity.custom;
 
 import com.dayofpi.mobcatalog.entity.ModEntityTypes;
+import com.dayofpi.mobcatalog.item.ModItems;
 import com.dayofpi.mobcatalog.sound.ModSoundEvents;
 import com.dayofpi.mobcatalog.util.ModTags;
 import com.dayofpi.mobcatalog.util.ModUtil;
@@ -33,6 +34,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -56,7 +58,8 @@ public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabE
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, Ingredient.of(ModTags.Items.CRAB_FOOD), false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(6, new LookAndWaveGoal(this, Player.class));
+        this.goalSelector.addGoal(6, new LookAndWaveGoal(this, CrabEntity.class));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
@@ -125,7 +128,7 @@ public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabE
             }
             return PlayState.STOP;
         });
-        AnimationController<CrabEntity> attack = new AnimationController<>(this, "attack", 5, event -> PlayState.CONTINUE).triggerableAnim("attack", RawAnimation.begin().thenPlay("attack"));
+        AnimationController<CrabEntity> attack = new AnimationController<>(this, "claw", 5, event -> PlayState.CONTINUE).triggerableAnim("attack", RawAnimation.begin().thenPlay("attack")).triggerableAnim("wave", RawAnimation.begin().thenPlay("wave"));
         controllers.add(main, attack);
     }
 
@@ -154,6 +157,15 @@ public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabE
     }
 
     @Override
+    protected void ageBoundaryReached() {
+        super.ageBoundaryReached();
+        if (!this.isBaby() && this.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
+            this.spawnAtLocation(ModItems.CRAB_CLAW.get(), 1);
+        }
+
+    }
+
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_VARIANT, CrabVariant.RED.name);
@@ -177,6 +189,23 @@ public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabE
     @Override
     public CrabVariant getVariant() {
         return CrabVariant.byName(this.entityData.get(DATA_VARIANT));
+    }
+
+    static class LookAndWaveGoal extends LookAtPlayerGoal {
+        private final CrabEntity crab;
+
+        public LookAndWaveGoal(CrabEntity crab, Class<? extends LivingEntity> class_) {
+            super(crab, class_, 10.0F);
+            this.crab = crab;
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            if (!this.crab.isAggressive() && this.crab.random.nextFloat() < 0.32F) {
+                this.crab.triggerAnim("claw", "wave");
+            }
+        }
     }
 
     public enum CrabVariant implements StringRepresentable {

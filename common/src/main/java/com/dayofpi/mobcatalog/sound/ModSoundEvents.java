@@ -24,6 +24,13 @@ public class ModSoundEvents {
     public static final RegistrySupplier<SoundEvent> PENGUIN_EAT = registerSoundEvent("entity.penguin.eat");
     public static final RegistrySupplier<SoundEvent> PENGUIN_HURT = registerSoundEvent("entity.penguin.hurt");
     public static final RegistrySupplier<SoundEvent> PENGUIN_STEP = registerSoundEvent("entity.penguin.step");
+    public static final RegistrySupplier<SoundEvent> STONEMAW_AMBIENT = registerSoundEvent("entity.stonemaw.ambient");
+    public static final RegistrySupplier<SoundEvent> STONEMAW_CLOSE = registerSoundEvent("entity.stonemaw.close");
+    public static final RegistrySupplier<SoundEvent> STONEMAW_DEATH = registerSoundEvent("entity.stonemaw.death");
+    public static final RegistrySupplier<SoundEvent> STONEMAW_EAT = registerSoundEvent("entity.stonemaw.eat");
+    public static final RegistrySupplier<SoundEvent> STONEMAW_HURT = registerSoundEvent("entity.stonemaw.hurt");
+    public static final RegistrySupplier<SoundEvent> STONEMAW_OPEN = registerSoundEvent("entity.stonemaw.open");
+    public static final RegistrySupplier<SoundEvent> STONEMAW_STEP = registerSoundEvent("entity.stonemaw.step");
 
     private static RegistrySupplier<SoundEvent> registerSoundEvent(String name) {
         ResourceLocation id = new ResourceLocation(MobCatalog.MOD_ID, name);

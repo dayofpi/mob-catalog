@@ -1,13 +1,15 @@
 {
   "advancements.mobcatalog.obtain_crab_claw.description": "Obtain a Crab Claw",
-  "advancements.mobcatalog.obtain_crab_claw.title": "Reach for the Stars",
+  "advancements.mobcatalog.obtain_crab_claw.title": "Reach for the Sky",
   "entity.mobcatalog.capybara": "Capybara",
   "entity.mobcatalog.crab": "Crab",
   "entity.mobcatalog.penguin": "Penguin",
+  "entity.mobcatalog.stonemaw": "Stonemaw",
   "item.mobcatalog.capybara_spawn_egg": "Capybara Spawn Egg",
   "item.mobcatalog.crab_claw": "Crab Claw",
   "item.mobcatalog.crab_spawn_egg": "Crab Spawn Egg",
   "item.mobcatalog.penguin_spawn_egg": "Penguin Spawn Egg",
+  "item.mobcatalog.stonemaw_spawn_egg": "Stonemaw Spawn Egg",
   "itemGroup.mobcatalog": "Mob Catalog",
   "subtitles.mobcatalog.entity.capybara.ambient": "Capybara chirps",
   "subtitles.mobcatalog.entity.capybara.death": "Capybara dies",
@@ -22,5 +24,12 @@
   "subtitles.mobcatalog.entity.penguin.death": "Penguin dies",
   "subtitles.mobcatalog.entity.penguin.eat": "Penguin eats",
   "subtitles.mobcatalog.entity.penguin.hurt": "Penguin hurts",
-  "subtitles.mobcatalog.entity.penguin.step": "Penguin steps"
+  "subtitles.mobcatalog.entity.penguin.step": "Penguin steps",
+  "subtitles.mobcatalog.entity.stonemaw.ambient": "Stonemaw growls",
+  "subtitles.mobcatalog.entity.stonemaw.close": "Stonemaw closes",
+  "subtitles.mobcatalog.entity.stonemaw.death": "Stonemaw dies",
+  "subtitles.mobcatalog.entity.stonemaw.eat": "Stonemaw eats",
+  "subtitles.mobcatalog.entity.stonemaw.hurt": "Stonemaw hurts",
+  "subtitles.mobcatalog.entity.stonemaw.open": "Stonemaw opens",
+  "subtitles.mobcatalog.entity.stonemaw.step": "Stonemaw steps"
 }

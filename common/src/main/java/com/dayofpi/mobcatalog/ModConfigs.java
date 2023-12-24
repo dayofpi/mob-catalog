@@ -11,6 +11,7 @@ public class ModConfigs {
     public static final ForgeConfigSpec.ConfigValue<Boolean> SPAWN_CAPYBARAS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SPAWN_CRABS;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SPAWN_PENGUINS;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> SPAWN_STONEMAWS;
 
     static {
         BUILDER.push("Common Configs for Mob Catalog");
@@ -20,6 +21,7 @@ public class ModConfigs {
         SPAWN_CAPYBARAS = BUILDER.define("spawn_capybaras", true);
         SPAWN_CRABS = BUILDER.define("spawn_crabs", true);
         SPAWN_PENGUINS = BUILDER.define("spawn_penguins", true);
+        SPAWN_STONEMAWS = BUILDER.define("spawn_stonemaws", true);
 
         BUILDER.pop();
         SPEC = BUILDER.build();

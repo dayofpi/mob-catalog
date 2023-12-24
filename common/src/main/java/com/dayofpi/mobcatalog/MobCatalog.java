@@ -1,9 +1,7 @@
 package com.dayofpi.mobcatalog;
 
 import com.dayofpi.mobcatalog.entity.ModEntityTypes;
-import com.dayofpi.mobcatalog.entity.client.CapybaraRenderer;
-import com.dayofpi.mobcatalog.entity.client.CrabRenderer;
-import com.dayofpi.mobcatalog.entity.client.PenguinRenderer;
+import com.dayofpi.mobcatalog.entity.client.*;
 import com.dayofpi.mobcatalog.item.ModItems;
 import com.dayofpi.mobcatalog.sound.ModSoundEvents;
 import com.dayofpi.mobcatalog.util.ModTags;
@@ -16,6 +14,7 @@ import dev.architectury.utils.Env;
 import dev.architectury.utils.EnvExecutor;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -46,6 +45,9 @@ public class MobCatalog {
             if (ModConfigs.SPAWN_PENGUINS.get() && biomeContext.hasTag(ModTags.Biomes.SPAWNS_PENGUINS)) {
                 mutable.getSpawnProperties().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntityTypes.PENGUIN.get(), 5, 2, 5));
             }
+            if (ModConfigs.SPAWN_STONEMAWS.get() && biomeContext.hasTag(BiomeTags.IS_OVERWORLD) && !biomeContext.hasTag(ModTags.Biomes.NO_REGULAR_MOB_SPAWNS)) {
+                mutable.getSpawnProperties().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntityTypes.STONEMAW.get(), 20, 1, 2));
+            }
         });
         EnvExecutor.runInEnv(Env.CLIENT, () -> MobCatalog::initClient);
     }
@@ -54,5 +56,6 @@ public class MobCatalog {
         EntityRendererRegistry.register(ModEntityTypes.CAPYBARA, CapybaraRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.CRAB, CrabRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.PENGUIN, PenguinRenderer::new);
+        EntityRendererRegistry.register(ModEntityTypes.STONEMAW, StonemawRenderer::new);
     }
 }

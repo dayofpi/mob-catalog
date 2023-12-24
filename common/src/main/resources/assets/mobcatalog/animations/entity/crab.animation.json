@@ -93,6 +93,38 @@
 					}
 				}
 			}
+		},
+		"wave": {
+			"animation_length": 1.25,
+			"bones": {
+				"left_claw": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [-50, -115, 0]
+						},
+						"0.75": {
+							"vector": [-90, -115, 0]
+						},
+						"1.0": {
+							"vector": [-15, -115, 0]
+						},
+						"1.25": {
+							"vector": [-50, -115, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [-1, 0, 0]
+						}
+					}
+				}
+			}
 		}
 	},
 	"azurelib_format_version": 2

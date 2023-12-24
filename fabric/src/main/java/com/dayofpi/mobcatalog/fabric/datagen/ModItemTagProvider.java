@@ -18,5 +18,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTags.Items.CAPYBARA_FOOD).add(Items.MELON_SLICE);
         getOrCreateTagBuilder(ModTags.Items.CRAB_FOOD).add(Items.KELP);
         getOrCreateTagBuilder(ModTags.Items.PENGUIN_FOOD).add(Items.COD, Items.SALMON, Items.TROPICAL_FISH);
+        getOrCreateTagBuilder(ModTags.Items.STONEMAW_FOOD).add(Items.DIAMOND);
     }
 }

@@ -19,6 +19,7 @@ public class ModModelProvider extends FabricModelProvider {
         generateSpawnEgg(ModItems.CAPYBARA_SPAWN_EGG, blockStateModelGenerator);
         generateSpawnEgg(ModItems.CRAB_SPAWN_EGG, blockStateModelGenerator);
         generateSpawnEgg(ModItems.PENGUIN_SPAWN_EGG, blockStateModelGenerator);
+        generateSpawnEgg(ModItems.STONEMAW_SPAWN_EGG, blockStateModelGenerator);
     }
 
     @Override

@@ -20,5 +20,6 @@ public class ModBiomeTagProvider extends FabricTagProvider<Biome> {
         getOrCreateTagBuilder(ModTags.Biomes.SPAWNS_CAPYBARAS).addOptional(Biomes.SWAMP).addOptional(Biomes.JUNGLE).addOptional(Biomes.SPARSE_JUNGLE);
         getOrCreateTagBuilder(ModTags.Biomes.SPAWNS_CRABS).addOptional(Biomes.BEACH).addOptional(Biomes.MANGROVE_SWAMP);
         getOrCreateTagBuilder(ModTags.Biomes.SPAWNS_PENGUINS).addOptional(Biomes.STONY_SHORE);
+        getOrCreateTagBuilder(ModTags.Biomes.NO_REGULAR_MOB_SPAWNS).addOptional(Biomes.DEEP_DARK).addOptional(Biomes.MUSHROOM_FIELDS);
     }
 }

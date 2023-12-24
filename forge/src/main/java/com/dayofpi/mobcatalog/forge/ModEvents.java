@@ -5,6 +5,7 @@ import com.dayofpi.mobcatalog.ModConfigs;
 import com.dayofpi.mobcatalog.entity.ModEntityTypes;
 import com.dayofpi.mobcatalog.entity.custom.CrabEntity;
 import com.dayofpi.mobcatalog.entity.custom.PenguinEntity;
+import com.dayofpi.mobcatalog.entity.custom.StonemawEntity;
 import com.dayofpi.mobcatalog.item.ModItems;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -48,6 +49,7 @@ public class ModEvents {
             event.register(ModEntityTypes.CAPYBARA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
             event.register(ModEntityTypes.CRAB.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CrabEntity::checkCrabSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
             event.register(ModEntityTypes.PENGUIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PenguinEntity::checkPenguinSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+            event.register(ModEntityTypes.STONEMAW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, StonemawEntity::checkStonemawSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
         }
     }
 }
