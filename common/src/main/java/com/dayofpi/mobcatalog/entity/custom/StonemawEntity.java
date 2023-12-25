@@ -37,6 +37,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -48,12 +49,12 @@ public class StonemawEntity extends TamableAnimal implements GeoEntity, HasCusto
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private SimpleContainer inventory;
 
-
     public StonemawEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
         super(entityType, level);
+        this.createInventory();
         this.lookControl = new StonemawLookControl();
         this.moveControl = new StonemawMoveControl();
-        this.createInventory();
+        this.xpReward = 5;
     }
 
     private void createInventory() {
@@ -144,12 +145,13 @@ public class StonemawEntity extends TamableAnimal implements GeoEntity, HasCusto
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
         ItemStack itemStack = player.getItemInHand(interactionHand);
-        if (this.isTame() && (!this.isFood(itemStack) || this.getHealth() >= this.getMaxHealth())) {
+        if (this.isOwnedBy(player) && this.isTame() && (!this.isFood(itemStack) || this.getHealth() >= this.getMaxHealth())) {
             if (player.isSecondaryUseActive()) {
                 this.openCustomInventoryScreen(player);
                 this.setMouthOpen(true);
                 this.playSound(ModSoundEvents.STONEMAW_OPEN.get(), 1.0F, this.getVoicePitch());
-            } else this.setOrderedToSit(!this.isOrderedToSit());
+            } else if (this.isOwnedBy(player))
+                this.setOrderedToSit(!this.isOrderedToSit());
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
         else if (this.isFood(itemStack)) {
@@ -231,8 +233,16 @@ public class StonemawEntity extends TamableAnimal implements GeoEntity, HasCusto
 
     @Override
     public SlotAccess getSlot(int k) {
-        int j = k - 500 + 2;
-        return j >= 2 && j < this.inventory.getContainerSize() ? SlotAccess.forContainer(this.inventory, j) : super.getSlot(k);
+        return k >= 0 && k < inventory.getContainerSize() ? new SlotAccess() {
+            public ItemStack get() {
+                return inventory.getItem(k);
+            }
+
+            public boolean set(ItemStack arg) {
+                inventory.setItem(k, arg);
+                return true;
+            }
+        } : SlotAccess.NULL;
     }
 
     private boolean isMouthOpen() {
@@ -275,7 +285,26 @@ public class StonemawEntity extends TamableAnimal implements GeoEntity, HasCusto
 
     @Override
     public void openCustomInventoryScreen(Player player) {
-        player.openMenu(this);
+        if (!this.level().isClientSide)
+            player.openMenu(this);
+    }
+
+    @Override
+    protected void dropEquipment() {
+        super.dropEquipment();
+        if (this.inventory != null) {
+            for(int i = 0; i < this.inventory.getContainerSize(); ++i) {
+                ItemStack itemstack = this.inventory.getItem(i);
+                if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack)) {
+                    this.spawnAtLocation(itemstack);
+                }
+            }
+        }
+    }
+
+    @Override
+    protected boolean shouldDropLoot() {
+        return true;
     }
 
     @Nullable
