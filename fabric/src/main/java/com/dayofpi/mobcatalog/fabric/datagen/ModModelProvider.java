@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.models.model.ModelLocationUtils;
+import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.world.item.Item;
 
 public class ModModelProvider extends FabricModelProvider {
@@ -24,6 +25,9 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
+        itemModelGenerator.generateFlatItem(ModItems.CRAB_LEG.get(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.COOKED_CRAB_LEG.get(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.CRAB_BUCKET.get(), ModelTemplates.FLAT_ITEM);
     }
 
     private static void generateSpawnEgg(RegistrySupplier<Item> itemRegistrySupplier, BlockModelGenerators blockModelGenerators) {

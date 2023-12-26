@@ -1,5 +1,6 @@
 package com.dayofpi.mobcatalog.fabric.datagen;
 
+import com.dayofpi.mobcatalog.item.ModItems;
 import com.dayofpi.mobcatalog.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -17,7 +18,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     protected void addTags(HolderLookup.Provider provider) {
         getOrCreateTagBuilder(ModTags.Items.CAPYBARA_FOOD).add(Items.MELON_SLICE);
         getOrCreateTagBuilder(ModTags.Items.CRAB_FOOD).add(Items.KELP);
-        getOrCreateTagBuilder(ModTags.Items.PENGUIN_FOOD).add(Items.COD, Items.SALMON, Items.TROPICAL_FISH);
+        getOrCreateTagBuilder(ModTags.Items.PENGUIN_FOOD).add(ModItems.CRAB_LEG.get());
+        getOrCreateTagBuilder(ModTags.Items.PENGUIN_ALTERNATE_FOOD).add(Items.COD, Items.SALMON, Items.TROPICAL_FISH);
         getOrCreateTagBuilder(ModTags.Items.STONEMAW_FOOD).add(Items.DIAMOND);
     }
 }

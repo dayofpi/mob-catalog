@@ -5,6 +5,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
@@ -18,12 +19,14 @@ public class ModUtil {
         if (boat.isVehicle()) {
             List<PenguinEntity> list = boat.level().getEntitiesOfClass(PenguinEntity.class, boat.getBoundingBox().inflate(15.0), Entity::isInWaterOrBubble);
 
-            if (!list.isEmpty() && boat.getWaterLevelAbove() > 0.0F) {
-                boat.setDeltaMovement(boat.getDeltaMovement().multiply(1.2, 0.0, 1.2));
+            if (!list.isEmpty() && boat.getWaterLevelAbove() > 0.0F && boat.getPaddleState(0) && boat.getPaddleState(1)) {
+                Vec3 alteredMovement = boat.getDeltaMovement().multiply(1.2, 0.0, 1.2);
+                double maxSpeed = 0.7;
+                boat.setDeltaMovement(Mth.clamp(alteredMovement.x, -maxSpeed, maxSpeed), alteredMovement.y, Mth.clamp(alteredMovement.z, -maxSpeed, maxSpeed));
             }
         }
         if (boat.getDeltaMovement().horizontalDistanceSqr() > 0.5) {
-            for(int i = 0; i < 3; ++i) {
+            for(int i = 0; i < 5; ++i) {
                 boat.level().addParticle(ParticleTypes.SPLASH, boat.getRandomX(0.5), boat.getY() + 0.5, boat.getRandomZ(0.5), 0.0, 0.0, 0.0);
             }
         }

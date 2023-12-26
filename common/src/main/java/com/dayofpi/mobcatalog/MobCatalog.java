@@ -31,9 +31,9 @@ public class MobCatalog {
 
     public static void init() {
         TABS.register();
-        ModItems.ITEMS.register();
         ModEntityTypes.ENTITY_TYPES.register();
         ModEntityTypes.registerAttributes();
+        ModItems.ITEMS.register();
         ModSoundEvents.SOUND_EVENTS.register();
         BiomeModifications.addProperties((biomeContext, mutable) -> {
             if (ModConfigs.SPAWN_CAPYBARAS.get() && biomeContext.hasTag(ModTags.Biomes.SPAWNS_CAPYBARAS)) {

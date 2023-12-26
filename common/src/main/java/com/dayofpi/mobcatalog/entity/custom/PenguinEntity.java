@@ -1,5 +1,6 @@
 package com.dayofpi.mobcatalog.entity.custom;
 
+import com.dayofpi.mobcatalog.ModConfigs;
 import com.dayofpi.mobcatalog.entity.ModEntityTypes;
 import com.dayofpi.mobcatalog.sound.ModSoundEvents;
 import com.dayofpi.mobcatalog.util.ModTags;
@@ -48,7 +49,7 @@ public class PenguinEntity extends Animal implements GeoEntity {
     public PenguinEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.12F, 1.0F, true);
+        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.2F, 1.0F, true);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -80,7 +81,8 @@ public class PenguinEntity extends Animal implements GeoEntity {
         this.goalSelector.addGoal(1, new BreathAirGoal(this));
         this.goalSelector.addGoal(2, new PanicGoal(this, 1.4));
         this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new TemptGoal(this, 1.0, Ingredient.of(ModTags.Items.PENGUIN_FOOD), false));
+        this.goalSelector.addGoal(4, new AlternateTemptGoal(this, 1.0, Ingredient.of(ModTags.Items.PENGUIN_FOOD), true));
+        this.goalSelector.addGoal(4, new AlternateTemptGoal(this, 1.0, Ingredient.of(ModTags.Items.PENGUIN_ALTERNATE_FOOD), false));
         this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1));
         this.goalSelector.addGoal(6, new RandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(6, new MoveInWaterGoal(this, 2.0, 10));
@@ -101,7 +103,7 @@ public class PenguinEntity extends Animal implements GeoEntity {
 
     @Override
     public boolean isFood(ItemStack itemStack) {
-        return itemStack.is(ModTags.Items.PENGUIN_FOOD);
+        return itemStack.is(ModConfigs.SPAWN_CRABS.get() ? ModTags.Items.PENGUIN_FOOD : ModTags.Items.PENGUIN_ALTERNATE_FOOD);
     }
 
     @Override
@@ -214,6 +216,25 @@ public class PenguinEntity extends Animal implements GeoEntity {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
         return ModEntityTypes.PENGUIN.get().create(serverLevel);
+    }
+
+    static class AlternateTemptGoal extends TemptGoal {
+        private final boolean requiresCrabs;
+
+        public AlternateTemptGoal(PathfinderMob pathfinderMob, double d, Ingredient ingredient, boolean requiresCrabs) {
+            super(pathfinderMob, d, ingredient, false);
+            this.requiresCrabs = requiresCrabs;
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.requiresCrabs && !ModConfigs.SPAWN_CRABS.get()) {
+                return false;
+            } else if (!this.requiresCrabs && ModConfigs.SPAWN_CRABS.get()) {
+                return false;
+            }
+            return super.canUse();
+        }
     }
 
     static class UnstuckGoal extends FloatGoal {

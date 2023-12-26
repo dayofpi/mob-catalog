@@ -1,5 +1,8 @@
-// 1.20.1	2023-12-24T15:57:03.4822709	Mob Catalog/Model Definitions
+// 1.20.1	2023-12-26T03:57:18.8058877	Mob Catalog/Model Definitions
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets\mobcatalog\models\item\crab_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets\mobcatalog\models\item\stonemaw_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets\mobcatalog\models\item\penguin_spawn_egg.json
+4bd10b5ed7df0333d742d9f887278275567dedd2 assets\mobcatalog\models\item\crab_leg.json
+731bf51025a2f451c31dfd7dd60206a87d43365e assets\mobcatalog\models\item\cooked_crab_leg.json
+d1866dc5fa1bf728230dcd24b09afcb4d6a3b570 assets\mobcatalog\models\item\crab_bucket.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets\mobcatalog\models\item\capybara_spawn_egg.json

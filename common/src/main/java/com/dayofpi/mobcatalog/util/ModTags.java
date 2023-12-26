@@ -21,6 +21,7 @@ public class ModTags {
         public static final TagKey<Item> CAPYBARA_FOOD = tag("capybara_food");
         public static final TagKey<Item> CRAB_FOOD = tag("crab_food");
         public static final TagKey<Item> PENGUIN_FOOD = tag("penguin_food");
+        public static final TagKey<Item> PENGUIN_ALTERNATE_FOOD = tag("penguin_alternate_food");
         public static final TagKey<Item> STONEMAW_FOOD = tag("stonemaw_food");
 
         private static TagKey<Item> tag(String name) {

@@ -20,10 +20,12 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -31,6 +33,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -43,8 +46,9 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabEntity.CrabVariant> {
+public class CrabEntity extends Animal implements GeoEntity, Bucketable, VariantHolder<CrabEntity.CrabVariant> {
     private static final EntityDataAccessor<String> DATA_VARIANT = SynchedEntityData.defineId(CrabEntity.class, EntityDataSerializers.STRING);
+    private static final EntityDataAccessor<Boolean> DATA_FROM_BUCKET = SynchedEntityData.defineId(CrabEntity.class, EntityDataSerializers.BOOLEAN);
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public CrabEntity(EntityType<? extends Animal> entityType, Level level) {
@@ -161,6 +165,7 @@ public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabE
         super.ageBoundaryReached();
         if (!this.isBaby() && this.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
             this.spawnAtLocation(ModItems.CRAB_CLAW.get(), 1);
+            this.playSound(SoundEvents.ITEM_PICKUP);
         }
 
     }
@@ -169,16 +174,19 @@ public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabE
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_VARIANT, CrabVariant.RED.name);
+        this.entityData.define(DATA_FROM_BUCKET, false);
     }
 
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
         compoundTag.putString("variant", this.getVariant().getSerializedName());
+        compoundTag.putBoolean("from_bucket", this.fromBucket());
     }
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
         this.setVariant(CrabVariant.byName(compoundTag.getString("variant")));
+        this.setFromBucket(compoundTag.getBoolean("from_bucket"));
     }
 
     @Override
@@ -189,6 +197,53 @@ public class CrabEntity extends Animal implements GeoEntity, VariantHolder<CrabE
     @Override
     public CrabVariant getVariant() {
         return CrabVariant.byName(this.entityData.get(DATA_VARIANT));
+    }
+
+    @Override
+    public boolean fromBucket() {
+        return this.entityData.get(DATA_FROM_BUCKET);
+    }
+
+    @Override
+    public void setFromBucket(boolean bl) {
+        this.entityData.set(DATA_FROM_BUCKET, bl);
+    }
+
+    @Override
+    public void saveToBucketTag(ItemStack itemStack) {
+        Bucketable.saveDefaultDataToBucketTag(this, itemStack);
+        CompoundTag compoundTag = itemStack.getOrCreateTag();
+        compoundTag.putString("variant", this.getVariant().getSerializedName());
+        compoundTag.putInt("Age", this.getAge());
+    }
+
+    @Override
+    public void loadFromBucketTag(CompoundTag compoundTag) {
+        Bucketable.loadDefaultDataFromBucketTag(this, compoundTag);
+        this.setVariant(CrabVariant.byName(compoundTag.getString("variant")));
+        if (compoundTag.contains("Age")) {
+            this.setAge(compoundTag.getInt("Age"));
+        }
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
+        return Bucketable.bucketMobPickup(player, interactionHand, this).orElse(super.mobInteract(player, interactionHand));
+    }
+
+    @Override
+    public ItemStack getBucketItemStack() {
+        return new ItemStack(ModItems.CRAB_BUCKET.get());
+    }
+
+    @Override
+    public SoundEvent getPickupSound() {
+        return SoundEvents.BUCKET_FILL_FISH;
+    }
+
+    @Override
+    public boolean requiresCustomPersistence() {
+        return super.requiresCustomPersistence() || this.fromBucket();
     }
 
     static class LookAndWaveGoal extends LookAtPlayerGoal {

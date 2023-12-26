@@ -261,12 +261,9 @@ public class StonemawEntity extends TamableAnimal implements GeoEntity, HasCusto
             } else if (event.isMoving()) {
                 event.setControllerSpeed(ModUtil.getAnimationWalkSpeed(this, 2.0F));
                 return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-            } else {
-                event.setControllerSpeed(2.0F);
-                return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
-            }
+            } else return PlayState.STOP;
         });
-        AnimationController<StonemawEntity> mouth = new AnimationController<>(this, "mouth", 20, event -> {
+        AnimationController<StonemawEntity> mouth = new AnimationController<>(this, "mouth", 10, event -> {
             if (this.isAggressive())
                 return event.setAndContinue(RawAnimation.begin().thenLoop("attack"));
             else if (this.isMouthOpen())
