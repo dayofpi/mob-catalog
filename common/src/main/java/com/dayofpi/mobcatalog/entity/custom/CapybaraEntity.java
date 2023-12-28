@@ -75,6 +75,7 @@ public class CapybaraEntity extends Animal implements GeoEntity {
         this.setPathfindingMalus(BlockPathTypes.WATER, 4.0F);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.6D));

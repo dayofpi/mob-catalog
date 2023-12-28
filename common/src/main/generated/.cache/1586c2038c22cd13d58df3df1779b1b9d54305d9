@@ -1,5 +1,6 @@
-// 1.20.1	2023-12-26T03:57:18.8138877	Mob Catalog/Tags for minecraft:worldgen/biome
+// 1.20.1	2023-12-27T10:34:54.8311228	Mob Catalog/Tags for minecraft:worldgen/biome
 1bc8b87e019132bb5117592cf0ff981a2630c8de data\mobcatalog\tags\worldgen\biome\spawns_capybaras.json
+e4e65bd738332efa0021d2dd552fdbe6b54c2026 data\mobcatalog\tags\worldgen\biome\spawns_sloths.json
 4bb2ffa7af79c977e8b59549534bc811613deb1a data\mobcatalog\tags\worldgen\biome\spawns_penguins.json
 3b197436dcd8217e50cd7cd28d0332792339d93b data\mobcatalog\tags\worldgen\biome\no_regular_mob_spawns.json
 615a3e68b8c0e0d6a1334c45847254afe14f5fc1 data\mobcatalog\tags\worldgen\biome\spawns_crabs.json

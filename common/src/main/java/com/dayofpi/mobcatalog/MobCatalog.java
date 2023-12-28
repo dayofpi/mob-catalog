@@ -45,6 +45,9 @@ public class MobCatalog {
             if (ModConfigs.SPAWN_PENGUINS.get() && biomeContext.hasTag(ModTags.Biomes.SPAWNS_PENGUINS)) {
                 mutable.getSpawnProperties().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntityTypes.PENGUIN.get(), 5, 2, 5));
             }
+            if (ModConfigs.SPAWN_SLOTHS.get() && biomeContext.hasTag(ModTags.Biomes.SPAWNS_SLOTHS)) {
+                mutable.getSpawnProperties().addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntityTypes.SLOTH.get(), 10, 2, 4));
+            }
             if (ModConfigs.SPAWN_STONEMAWS.get() && biomeContext.hasTag(BiomeTags.IS_OVERWORLD) && !biomeContext.hasTag(ModTags.Biomes.NO_REGULAR_MOB_SPAWNS)) {
                 mutable.getSpawnProperties().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntityTypes.STONEMAW.get(), 20, 1, 2));
             }
@@ -56,6 +59,7 @@ public class MobCatalog {
         EntityRendererRegistry.register(ModEntityTypes.CAPYBARA, CapybaraRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.CRAB, CrabRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.PENGUIN, PenguinRenderer::new);
+        EntityRendererRegistry.register(ModEntityTypes.SLOTH, SlothRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.STONEMAW, StonemawRenderer::new);
     }
 }

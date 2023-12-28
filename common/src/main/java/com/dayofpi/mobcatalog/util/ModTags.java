@@ -33,6 +33,7 @@ public class ModTags {
         public static final TagKey<Biome> SPAWNS_CAPYBARAS = tag("spawns_capybaras");
         public static final TagKey<Biome> SPAWNS_CRABS = tag("spawns_crabs");
         public static final TagKey<Biome> SPAWNS_PENGUINS = tag("spawns_penguins");
+        public static final TagKey<Biome> SPAWNS_SLOTHS = tag("spawns_sloths");
         public static final TagKey<Biome> NO_REGULAR_MOB_SPAWNS = tag("no_regular_mob_spawns");
 
         private static TagKey<Biome> tag(String name) {

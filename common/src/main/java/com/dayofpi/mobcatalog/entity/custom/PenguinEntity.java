@@ -1,6 +1,7 @@
 package com.dayofpi.mobcatalog.entity.custom;
 
 import com.dayofpi.mobcatalog.ModConfigs;
+import com.dayofpi.mobcatalog.entity.AlternateTemptGoal;
 import com.dayofpi.mobcatalog.entity.ModEntityTypes;
 import com.dayofpi.mobcatalog.sound.ModSoundEvents;
 import com.dayofpi.mobcatalog.util.ModTags;
@@ -13,10 +14,7 @@ import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
@@ -27,8 +25,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
-import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -39,11 +35,9 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class PenguinEntity extends Animal implements GeoEntity {
-    private static final EntityDataAccessor<Integer> SWIM_TIME = SynchedEntityData.defineId(PenguinEntity.class, EntityDataSerializers.INT);
+public class PenguinEntity extends AmphibiousAnimal implements GeoEntity {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public PenguinEntity(EntityType<? extends Animal> entityType, Level level) {
@@ -54,16 +48,6 @@ public class PenguinEntity extends Animal implements GeoEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0).add(Attributes.MOVEMENT_SPEED, 0.2);
-    }
-
-    @Override
-    public float maxUpStep() {
-        return 1.0F;
-    }
-
-    @Override
-    protected PathNavigation createNavigation(Level level) {
-        return new AmphibiousPathNavigation(this, level);
     }
 
     public static boolean checkPenguinSpawnRules(EntityType<? extends Animal> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
@@ -77,28 +61,17 @@ public class PenguinEntity extends Animal implements GeoEntity {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new UnstuckGoal(this));
-        this.goalSelector.addGoal(1, new BreathAirGoal(this));
+        this.goalSelector.addGoal(0, new BreathAirGoal(this));
+        this.goalSelector.addGoal(1, new UnstuckGoal(this));
         this.goalSelector.addGoal(2, new PanicGoal(this, 1.4));
         this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new AlternateTemptGoal(this, 1.0, Ingredient.of(ModTags.Items.PENGUIN_FOOD), true));
-        this.goalSelector.addGoal(4, new AlternateTemptGoal(this, 1.0, Ingredient.of(ModTags.Items.PENGUIN_ALTERNATE_FOOD), false));
+        this.goalSelector.addGoal(4, new AlternateTemptGoal(this, 1.0, Ingredient.of(ModTags.Items.PENGUIN_FOOD), ModConfigs.SPAWN_CRABS.get(), true, false));
+        this.goalSelector.addGoal(4, new AlternateTemptGoal(this, 1.0, Ingredient.of(ModTags.Items.PENGUIN_ALTERNATE_FOOD), ModConfigs.SPAWN_CRABS.get(), false, false));
         this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1));
-        this.goalSelector.addGoal(6, new RandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(6, new MoveInWaterGoal(this, 2.0, 10));
-        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-    }
-
-    @Override
-    public void travel(Vec3 vec3) {
-        if (this.isControlledByLocalInstance() && this.isInWater()) {
-            this.moveRelative(this.getSpeed(), vec3);
-            this.move(MoverType.SELF, this.getDeltaMovement());
-            this.setDeltaMovement(this.getDeltaMovement().scale(0.9));
-        } else {
-            super.travel(vec3);
-        }
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(7, new RandomSwimmingGoal(this, 1.0D, 10));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(9, new RandomLookAroundGoal(this));
     }
 
     @Override
@@ -117,40 +90,10 @@ public class PenguinEntity extends Animal implements GeoEntity {
 
     @Override
     public EntityDimensions getDimensions(Pose pose) {
-        if (this.isSwimmingOrSliding()) {
+        if (this.isInSwimmingPose()) {
             return EntityDimensions.fixed(0.65F, 0.6F);
         }
         return super.getDimensions(pose);
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SWIM_TIME, 0);
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag compoundTag) {
-        super.addAdditionalSaveData(compoundTag);
-        compoundTag.putInt("swim_time", this.getSwimTime());
-    }
-
-    @Override
-    public void readAdditionalSaveData(CompoundTag compoundTag) {
-        super.readAdditionalSaveData(compoundTag);
-        this.setSwimTime(compoundTag.getInt("swim_time"));
-    }
-
-    public boolean isSwimmingOrSliding() {
-        return this.getSwimTime() > 0;
-    }
-
-    private int getSwimTime() {
-        return this.entityData.get(SWIM_TIME);
-    }
-
-    private void setSwimTime(int swimTime) {
-        this.entityData.set(SWIM_TIME, swimTime);
     }
 
     @Override
@@ -180,18 +123,8 @@ public class PenguinEntity extends Animal implements GeoEntity {
     }
 
     protected void playStepSound(BlockPos blockPos, BlockState blockState) {
-        if (!this.isSwimmingOrSliding()) {
+        if (!this.isInSwimmingPose()) {
             this.playSound(ModSoundEvents.PENGUIN_STEP.get(), 0.15F, 1.0F);
-        }
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        if (this.isInWaterOrBubble()) {
-            this.setSwimTime(40);
-        } else {
-            this.setSwimTime(this.getSwimTime() - 1);
         }
     }
 
@@ -199,7 +132,7 @@ public class PenguinEntity extends Animal implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "main", 10, event -> {
             event.setControllerSpeed(ModUtil.getAnimationWalkSpeed(this, 1.5F));
-            if (this.isSwimmingOrSliding())
+            if (this.isInSwimmingPose())
                 return event.setAndContinue(RawAnimation.begin().thenLoop("swim"));
             else if (event.isMoving())
                 return event.setAndContinue(RawAnimation.begin().thenLoop("waddle"));
@@ -216,54 +149,5 @@ public class PenguinEntity extends Animal implements GeoEntity {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
         return ModEntityTypes.PENGUIN.get().create(serverLevel);
-    }
-
-    static class AlternateTemptGoal extends TemptGoal {
-        private final boolean requiresCrabs;
-
-        public AlternateTemptGoal(PathfinderMob pathfinderMob, double d, Ingredient ingredient, boolean requiresCrabs) {
-            super(pathfinderMob, d, ingredient, false);
-            this.requiresCrabs = requiresCrabs;
-        }
-
-        @Override
-        public boolean canUse() {
-            if (this.requiresCrabs && !ModConfigs.SPAWN_CRABS.get()) {
-                return false;
-            } else if (!this.requiresCrabs && ModConfigs.SPAWN_CRABS.get()) {
-                return false;
-            }
-            return super.canUse();
-        }
-    }
-
-    static class UnstuckGoal extends FloatGoal {
-        private final Mob mob;
-
-        public UnstuckGoal(Mob mob) {
-            super(mob);
-            this.mob = mob;
-        }
-
-        @Override
-        public boolean canUse() {
-            return super.canUse() && mob.getNavigation().isStuck();
-        }
-    }
-
-    static class MoveInWaterGoal extends RandomSwimmingGoal {
-        public MoveInWaterGoal(PathfinderMob pathfinderMob, double d, int i) {
-            super(pathfinderMob, d, i);
-        }
-
-        @Override
-        public boolean canUse() {
-            return super.canUse() && this.mob.isInWaterOrBubble();
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return super.canContinueToUse() && this.mob.isInWaterOrBubble();
-        }
     }
 }

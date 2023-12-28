@@ -21,5 +21,6 @@ public class ModItems {
     public static final RegistrySupplier<Item> CAPYBARA_SPAWN_EGG = ITEMS.register("capybara_spawn_egg", () -> new ArchitecturySpawnEggItem(ModEntityTypes.CAPYBARA, 12873501, 6569761, new Item.Properties().arch$tab(MobCatalog.MAIN)));
     public static final RegistrySupplier<Item> CRAB_SPAWN_EGG = ITEMS.register("crab_spawn_egg", () -> new ArchitecturySpawnEggItem(ModEntityTypes.CRAB, 14440491, 3561107, new Item.Properties().arch$tab(MobCatalog.MAIN)));
     public static final RegistrySupplier<Item> PENGUIN_SPAWN_EGG = ITEMS.register("penguin_spawn_egg", () -> new ArchitecturySpawnEggItem(ModEntityTypes.PENGUIN, 2829362, 12698034, new Item.Properties().arch$tab(MobCatalog.MAIN)));
+    public static final RegistrySupplier<Item> SLOTH_SPAWN_EGG = ITEMS.register("sloth_spawn_egg", () -> new ArchitecturySpawnEggItem(ModEntityTypes.SLOTH, 6702371, 14333290, new Item.Properties().arch$tab(MobCatalog.MAIN)));
     public static final RegistrySupplier<Item> STONEMAW_SPAWN_EGG = ITEMS.register("stonemaw_spawn_egg", () -> new ArchitecturySpawnEggItem(ModEntityTypes.STONEMAW, 9408399, 8037416, new Item.Properties().arch$tab(MobCatalog.MAIN)));
 }

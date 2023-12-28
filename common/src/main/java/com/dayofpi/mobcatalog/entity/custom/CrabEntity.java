@@ -21,6 +21,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.DifficultyInstance;
@@ -32,6 +33,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.player.Player;
@@ -43,10 +46,11 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class CrabEntity extends Animal implements GeoEntity, Bucketable, VariantHolder<CrabEntity.CrabVariant> {
+public class CrabEntity extends Animal implements GeoEntity, ClimbingEntity, Bucketable, VariantHolder<CrabEntity.CrabVariant> {
     private static final EntityDataAccessor<String> DATA_VARIANT = SynchedEntityData.defineId(CrabEntity.class, EntityDataSerializers.STRING);
     private static final EntityDataAccessor<Boolean> DATA_FROM_BUCKET = SynchedEntityData.defineId(CrabEntity.class, EntityDataSerializers.BOOLEAN);
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
@@ -54,6 +58,23 @@ public class CrabEntity extends Animal implements GeoEntity, Bucketable, Variant
     public CrabEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
     }
+
+    @Override
+    public boolean canClimbBlock(BlockState blockState) {
+        return blockState.is(BlockTags.LOGS) || blockState.is(Blocks.MANGROVE_ROOTS);
+    }
+
+    @Override
+    protected PathNavigation createNavigation(Level level) {
+        return new WallClimberNavigation(this, level);
+    }
+
+    @Override
+    public boolean onClimbable() {
+        if (ClimbingEntity.canClimb(this)) return true;
+        return super.onClimbable();
+    }
+
 
     @Override
     protected void registerGoals() {
@@ -119,7 +140,7 @@ public class CrabEntity extends Animal implements GeoEntity, Bucketable, Variant
 
     @Override
     public boolean doHurtTarget(Entity entity) {
-        this.triggerAnim("attack", "attack");
+        this.triggerAnim("claw", "attack");
         return super.doHurtTarget(entity);
     }
 
@@ -167,7 +188,6 @@ public class CrabEntity extends Animal implements GeoEntity, Bucketable, Variant
             this.spawnAtLocation(ModItems.CRAB_CLAW.get(), 1);
             this.playSound(SoundEvents.ITEM_PICKUP);
         }
-
     }
 
     @Override

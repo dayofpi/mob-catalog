@@ -1,0 +1,256 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"idle": {
+			"loop": true,
+			"bones": {
+				"right_arm": {
+					"rotation": {
+						"vector": [0, -55, 0]
+					}
+				},
+				"left_arm": {
+					"rotation": {
+						"vector": [0, 55, 0]
+					}
+				},
+				"right_leg": {
+					"rotation": {
+						"vector": [0, -30, 0]
+					}
+				},
+				"left_leg": {
+					"rotation": {
+						"vector": [0, 30, 0]
+					}
+				}
+			}
+		},
+		"cling": {
+			"loop": true,
+			"bones": {
+				"right_arm": {
+					"rotation": {
+						"vector": [0, 0, -65]
+					},
+					"position": {
+						"vector": [0, 0, 1]
+					}
+				},
+				"left_arm": {
+					"rotation": {
+						"vector": [0, 0, 65]
+					},
+					"position": {
+						"vector": [0, 0, 1]
+					}
+				},
+				"root": {
+					"rotation": {
+						"vector": [0, 0, -180]
+					},
+					"position": {
+						"vector": [0, 9, 0]
+					}
+				},
+				"right_leg": {
+					"rotation": {
+						"vector": [-72.5, -65, 0]
+					}
+				},
+				"left_leg": {
+					"rotation": {
+						"vector": [-72.5, 65, 0]
+					}
+				}
+			}
+		},
+		"crawl": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"right_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -55, 0]
+						},
+						"0.25": {
+							"vector": [-23.24122, -51.37417, 28.79789]
+						},
+						"0.5": {
+							"vector": [0, -55, 0]
+						},
+						"1.0": {
+							"vector": [0, -55, 0]
+						},
+						"1.5": {
+							"vector": [0, -40, 0]
+						},
+						"2.0": {
+							"vector": [0, -55, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, 2, -1.5]
+						},
+						"0.5": {
+							"vector": [0, 0, -3]
+						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, 3]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"left_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 55, 0]
+						},
+						"0.5": {
+							"vector": [0, 40, 0]
+						},
+						"1.0": {
+							"vector": [0, 55, 0]
+						},
+						"1.5": {
+							"vector": [-23.24122, 51.3742, -28.7979]
+						},
+						"1.75": {
+							"vector": [0, 55, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 3]
+						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 2, -1.5]
+						},
+						"1.75": {
+							"vector": [0, 0, -3]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"right_leg": {
+					"rotation": {
+						"vector": [0, -30, 0]
+					}
+				},
+				"left_leg": {
+					"rotation": {
+						"vector": [0, 30, 0]
+					}
+				},
+				"root": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 2.5]
+						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [0, 0, -2.5]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		},
+		"swim": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"right_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -70, 0]
+						},
+						"1.0": {
+							"vector": [0, 60, 0]
+						},
+						"2.0": {
+							"vector": [0, -70, 0]
+						}
+					}
+				},
+				"left_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 70, 0]
+						},
+						"1.0": {
+							"vector": [0, -60, 0]
+						},
+						"2.0": {
+							"vector": [0, 70, 0]
+						}
+					}
+				},
+				"right_leg": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [27.5, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [-27.5, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"left_leg": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [-27.5, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.5": {
+							"vector": [27.5, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		}
+	},
+	"azurelib_format_version": 2
+}

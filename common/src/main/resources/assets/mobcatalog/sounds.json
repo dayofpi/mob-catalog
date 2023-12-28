@@ -104,6 +104,48 @@
     ],
     "subtitle": "subtitles.mobcatalog.entity.penguin.step"
   },
+  "entity.sloth.ambient": {
+    "sounds": [
+      "mobcatalog:entity/sloth/ambient1",
+      "mobcatalog:entity/sloth/ambient2",
+      "mobcatalog:entity/sloth/ambient3",
+      "mobcatalog:entity/sloth/ambient4",
+      "mobcatalog:entity/sloth/ambient5"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.sloth.ambient"
+  },
+  "entity.sloth.death": {
+    "sounds": [
+      "mobcatalog:entity/sloth/hurt1",
+      "mobcatalog:entity/sloth/hurt2",
+      "mobcatalog:entity/sloth/hurt3"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.sloth.death"
+  },
+  "entity.sloth.eat": {
+    "sounds": [
+      "mobcatalog:entity/sloth/eat1",
+      "mobcatalog:entity/sloth/eat2",
+      "mobcatalog:entity/sloth/eat3"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.sloth.eat"
+  },
+  "entity.sloth.hurt": {
+    "sounds": [
+      "mobcatalog:entity/sloth/hurt1",
+      "mobcatalog:entity/sloth/hurt2",
+      "mobcatalog:entity/sloth/hurt3"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.sloth.hurt"
+  },
+  "entity.sloth.step": {
+    "sounds": [
+      "mobcatalog:entity/sloth/step1",
+      "mobcatalog:entity/sloth/step2",
+      "mobcatalog:entity/sloth/step3"
+    ],
+    "subtitle": "subtitles.mobcatalog.entity.sloth.step"
+  },
   "entity.stonemaw.ambient": {
     "sounds": [
       "mobcatalog:entity/stonemaw/ambient1",

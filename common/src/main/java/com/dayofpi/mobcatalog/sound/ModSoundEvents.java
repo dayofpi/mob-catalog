@@ -24,6 +24,11 @@ public class ModSoundEvents {
     public static final RegistrySupplier<SoundEvent> PENGUIN_EAT = registerSoundEvent("entity.penguin.eat");
     public static final RegistrySupplier<SoundEvent> PENGUIN_HURT = registerSoundEvent("entity.penguin.hurt");
     public static final RegistrySupplier<SoundEvent> PENGUIN_STEP = registerSoundEvent("entity.penguin.step");
+    public static final RegistrySupplier<SoundEvent> SLOTH_AMBIENT = registerSoundEvent("entity.sloth.ambient");
+    public static final RegistrySupplier<SoundEvent> SLOTH_DEATH = registerSoundEvent("entity.sloth.death");
+    public static final RegistrySupplier<SoundEvent> SLOTH_EAT = registerSoundEvent("entity.sloth.eat");
+    public static final RegistrySupplier<SoundEvent> SLOTH_HURT = registerSoundEvent("entity.sloth.hurt");
+    public static final RegistrySupplier<SoundEvent> SLOTH_STEP = registerSoundEvent("entity.sloth.step");
     public static final RegistrySupplier<SoundEvent> STONEMAW_AMBIENT = registerSoundEvent("entity.stonemaw.ambient");
     public static final RegistrySupplier<SoundEvent> STONEMAW_CLOSE = registerSoundEvent("entity.stonemaw.close");
     public static final RegistrySupplier<SoundEvent> STONEMAW_DEATH = registerSoundEvent("entity.stonemaw.death");
