@@ -5,7 +5,7 @@ license = "MIT"
 
 [[mods]]
 modId = "mobcatalog"
-version = "${version}"
+version = "1.0.8+1.20.1"
 displayName = "Mob Catalog"
 authors = "dayofpi"
 description = '''
